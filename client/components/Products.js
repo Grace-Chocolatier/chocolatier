@@ -21,7 +21,6 @@ class Products extends Component {
   }
 
   render(){
-    console.log(this.props, "PROPS")
     return(
       <div>
         <div style={styles.root}>
