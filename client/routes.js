@@ -7,6 +7,7 @@ import {Main, Login, Signup, UserHome} from './components'
 import {me} from './store'
 import Products from './components/Products';
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles';
+import SingleProduct from './components/SingleProduct';
 
 /**
  * COMPONENT
@@ -27,6 +28,7 @@ class Routes extends Component {
               {/* Routes placed here are available to all visitors */}
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
+              <Route exact path='/products/:productId' component={SingleProduct} />
               {
                 isLoggedIn &&
                   <Switch>
