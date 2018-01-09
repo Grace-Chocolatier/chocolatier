@@ -20,7 +20,7 @@ const getProducts = products => ({type: GET_PRODUCTS, products})
  */
 export const fetchProducts = () =>
   dispatch =>
-    axios.get('api/products')
+    axios.get('/api/products')
       .then(res =>
         dispatch(getProducts(res.data || defaultProducts)))
       .catch(err => console.log(err))

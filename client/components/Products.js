@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import ActionInfo from 'material-ui/svg-icons/action/info';
-import { fetchProducts } from '../store/product';
+import { fetchProducts } from '../store/products';
+
+const styles = {}
 
 class Products extends Component {
+
   constructor(props){
     super(props);
   }
@@ -17,6 +21,7 @@ class Products extends Component {
   }
 
   render(){
+    console.log(this.props, "PROPS")
     return(
       <div>
         <div style={styles.root}>
@@ -53,3 +58,6 @@ function mapDispatchToProps(dispatch){
     },
   }
 }
+
+const ProductsContainer = connect(mapStateToProps, mapDispatchToProps)(Products);
+export default ProductsContainer;
