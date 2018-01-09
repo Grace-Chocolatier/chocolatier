@@ -4,6 +4,6 @@ module.exports = router
 
 router.get('/products', (req, res, next) => {
 	Product.findAll()
-	.then(products => res.send(products))
+	.then(products => res.json(products))
 	.catch(next)
 })
