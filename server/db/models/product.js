@@ -25,4 +25,5 @@ const Product = db.define('product', {
 	}
 })
 
+module.exports = Product
 //**NEED TO CREATE A MODEL FOR REVIEWS**
