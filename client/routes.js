@@ -9,6 +9,8 @@ import Products from './components/Products';
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles';
 import SingleProduct from './components/SingleProduct';
 import SingleUser from './components/SingleUser';
+import Cart from './components/cart';
+import {fetchCart} from './store/cart';
 
 /**
  * COMPONENT
@@ -29,6 +31,7 @@ class Routes extends Component {
               {/* Routes placed here are available to all visitors */}
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
+              <Route path="/cart" component={Cart}/>
               <Route exact path='/products/:productId' component={SingleProduct} />
               <Route exact path='/users/:userId' component={SingleUser} />
               {
@@ -64,6 +67,7 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(fetchCart())
     }
   }
 }
