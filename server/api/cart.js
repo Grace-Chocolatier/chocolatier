@@ -22,7 +22,7 @@ router.delete('/', (req, res, next) => {
 
 // Order POST
 router.post('/order', (req, res, next) => {
-  Order.create({where: {userId: req.body}})
+  Order.create({userId: req.body})
   .then(receipt => console.log("receipt is", receipt))
   .catch(next)
 });
