@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
-import { fetchCart } from '../store/cart';
+import { fetchCart, makeOrder } from '../store/cart';
 import {
   Table,
   TableBody,
@@ -40,7 +40,7 @@ class Cart extends Component {
 					))}
 					</TableBody>
 				</Table>
-				<RaisedButton label="Confirm Order" style={style} />
+				<RaisedButton label="Confirm Order" style={style} onClick={event => this.props.onClick(event, this.props.user.id)} />
 			</div>
 		)
 	}
@@ -53,5 +53,14 @@ function mapStateToProps(state) {
 	};
 }
 
-const CartContainer = connect(mapStateToProps)(Cart);
+function mapDispatchToProps() {
+	return {
+		onClick: function (event, user) {
+			event.preventDefault();
+			(user && user.id) ? makeOrder(user) : makeOrder(null);
+		}
+	}
+}
+
+const CartContainer = connect(mapStateToProps, mapDispatchToProps)(Cart);
 export default CartContainer;

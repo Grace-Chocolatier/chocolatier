@@ -50,6 +50,13 @@ export const fetchCart = () =>
           })
           .catch(err => console.log(err))
 
+export const makeOrder = (user) => 
+  console.log("IN THE THUNK")
+  dispatch =>
+    axios.post('/api/cart/order', user)
+    .then(res => res.data)
+    .catch(err => console.log(err))
+
 function remove(cart, product) {
   let newCart = [];
   for(var i = 0; i < cart.length; i++) {
