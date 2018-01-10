@@ -57,7 +57,7 @@ function mapDispatchToProps() {
 	return {
 		onClick: function (event, user) {
 			event.preventDefault();
-			(user && user.id) ? makeOrder(user) : makeOrder(null);
+			(user && user.id) ? makeOrder(user.id) : makeOrder(null);
 		}
 	}
 }

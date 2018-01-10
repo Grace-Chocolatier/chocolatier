@@ -50,10 +50,9 @@ export const fetchCart = () =>
           })
           .catch(err => console.log(err))
 
-export const makeOrder = (user) => 
-  console.log("IN THE THUNK")
-  dispatch =>
-    axios.post('/api/cart/order', user)
+export const makeOrder = (userId) => 
+
+    axios.post('/api/cart/order', userId)
     .then(res => res.data)
     .catch(err => console.log(err))
 
