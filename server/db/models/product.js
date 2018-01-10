@@ -19,6 +19,7 @@ const Product = db.define('product', {
 		type: Sequelize.SMALLINT,
 		allowNull: false
 	},
+	// OB/EC: the root of all evil floating point math, 1) you could use DECIMAL type (which is kind of for this); 2) use INTEGER and measure in cents
 	price: {
 		type: Sequelize.FLOAT,
 		allowNull: false
@@ -30,4 +31,5 @@ const Product = db.define('product', {
 })
 
 module.exports = Product
+// OB/EC: this kind of comment should probably be tracked in trello, not in your source code
 //**NEED TO CREATE A MODEL FOR REVIEWS**

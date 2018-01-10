@@ -50,6 +50,7 @@ export const fetchCart = () =>
           })
           .catch(err => console.log(err))
 
+// OB/EC: need dispatch, maybe for clearing the cart
 export const makeOrder = (userId) => 
 
     axios.post('/api/cart/order', userId)

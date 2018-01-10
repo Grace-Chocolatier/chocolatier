@@ -16,6 +16,7 @@ const style = {
   margin: 12,
 };
 
+// OB/EC: watch out for consistent indentation
 class Cart extends Component {
 	render() {
 		return (
@@ -57,6 +58,7 @@ function mapDispatchToProps() {
 	return {
 		onClick: function (event, user) {
 			event.preventDefault();
+			// OB/EC: could be shortened to makeOrder(user && user.id)
 			(user && user.id) ? makeOrder(user.id) : makeOrder(null);
 		}
 	}

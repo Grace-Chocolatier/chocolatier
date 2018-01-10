@@ -35,6 +35,7 @@ class Routes extends Component {
               <Route exact path='/products/:productId' component={SingleProduct} />
               <Route exact path='/users/:userId' component={SingleUser} />
               {
+                // OB/EC: consider moving this into an issue (instead of source code comment)
                 // for some reason this logic stops us from hitting our our last component
                 // isLoggedIn &&
                 //   <Switch>

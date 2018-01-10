@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
+// OB/EC: unused dependencies up here, could be removed
 import RaisedButton from 'material-ui/RaisedButton';
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import ActionInfo from 'material-ui/svg-icons/action/info';
