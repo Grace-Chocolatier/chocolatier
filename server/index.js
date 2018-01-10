@@ -57,9 +57,16 @@ const createApp = () => {
     next();
   })
 
+  //cart middleware that creates a cart in the session store if one doesn't already exist
+  app.use((req, res, next) => {
+    if (!req.session.cart) req.session.cart = [];
+    next()
+  })
+
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
+  app.use('/cart', require('./cart'))
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')));
