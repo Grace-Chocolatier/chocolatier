@@ -15,6 +15,10 @@ const Product = db.define('product', {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
+	inventory: {
+		type: Sequelize.SMALLINT,
+		allowNull: false
+	},
 	price: {
 		type: Sequelize.FLOAT,
 		allowNull: false
