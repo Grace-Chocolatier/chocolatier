@@ -41,18 +41,14 @@ export const deleteCart = (product) =>
         })
         .catch(err => console.log(err))
 
-export const fetchCart = () => {
-  console.log('got here')
-  return (dispatch) =>
+export const fetchCart = () =>
+  dispatch =>
           axios.get('/cart')
           .then(res => res.data)
           .then(products => {
             dispatch(getCart(products))
           })
           .catch(err => console.log(err))
-}
-
-
 
 function remove(cart, product) {
   let newCart = [];
