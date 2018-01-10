@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const cartMiddleware = require('../utils/cartMiddleware')
+const {Order, Order_item} = require('../db/models')
 module.exports = router;
 
 router.get('/', (req, res, next) => {
@@ -7,7 +8,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  console.log('IN THE POST', req.body)
   req.session.cart = [...req.session.cart, req.body];
   res.json(req.body);
 });
@@ -18,6 +18,13 @@ router.delete('/', (req, res, next) => {
     : req.session.cart = [];
 
   res.json(req.session.cart);
+});
+
+// Order POST
+router.post('/order', (req, res, next) => {
+  Order.create({where: {userId: req.body}})
+  .then(receipt => console.log("receipt is", receipt))
+  .catch(next)
 });
 
 // router.put('/', (req, res, next) => {
