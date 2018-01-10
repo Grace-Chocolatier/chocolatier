@@ -19,3 +19,9 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#logo {
+  font-family: 'Monsieur La Doulaise', cursive;
+  font-size: 60px;
+  text-align: center;
+}
