@@ -17,6 +17,7 @@ class SingleProduct extends Component {
 
     return (
       <div>
+        <button type="button">Add to cart</button>
         <h1>{product.name}</h1>
       </div>
     );
