@@ -25,7 +25,7 @@ const getCart = products => ({type: GET_CART, products})
 
 export const postCart = (product) =>
   dispatch =>
-    axios.post('api/cart', product)
+    axios.post('/api/cart', product)
       .then(res => res.data)
       .then(addedProduct => {
         dispatch(addToCart(addedProduct))
@@ -34,7 +34,7 @@ export const postCart = (product) =>
 
 export const deleteCart = (product) =>
       dispatch =>
-        axios.delete('api/cart', product)
+        axios.delete('/api/cart', product)
         .then(res => res.data)
         .then(deletedProduct => {
           dispatch(removeFromCart(deletedProduct))
@@ -43,7 +43,7 @@ export const deleteCart = (product) =>
 
 export const fetchCart = () =>
   dispatch =>
-          axios.get('api/cart')
+          axios.get('/api/cart')
           .then(res => res.data)
           .then(products => {
             dispatch(getCart(products))
@@ -65,9 +65,9 @@ function remove(cart, product) {
 export default function (state = cart, action) {
   switch (action.type) {
     case ADD_TO_CART:
-      return [...cart, action.product]
+      return [...state, action.product]
     case REMOVE_FROM_CART:
-      return remove(cart, action.product)
+      return remove(state, action.product)
     case GET_CART:
       return action.products
     default:

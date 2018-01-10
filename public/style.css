@@ -1,9 +1,11 @@
 body {
   font-family: sans-serif;
+  background-color: #3b1c0e;
 }
 
 a {
   text-decoration: none;
+  color: #c29200
 }
 
 label {
@@ -23,5 +25,6 @@ form div {
 #logo {
   font-family: 'Monsieur La Doulaise', cursive;
   font-size: 60px;
+  color: #c29200;
   text-align: center;
 }
