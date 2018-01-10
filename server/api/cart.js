@@ -7,8 +7,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
+  console.log('IN THE POST', req.body)
   req.session.cart = [...req.session.cart, req.body];
-  res.json(req.session.cart);
+  res.json(req.body);
 });
 
 router.delete('/', (req, res, next) => {
