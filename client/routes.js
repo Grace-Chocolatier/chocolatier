@@ -8,6 +8,7 @@ import {me} from './store'
 import Products from './components/Products';
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles';
 import SingleProduct from './components/SingleProduct';
+import SingleUser from './components/SingleUser';
 
 /**
  * COMPONENT
@@ -29,12 +30,14 @@ class Routes extends Component {
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route exact path='/products/:productId' component={SingleProduct} />
+              <Route exact path='/users/:userId' component={SingleUser} />
               {
-                isLoggedIn &&
-                  <Switch>
-                    {/* Routes placed here are only available after logging in */}
-                    <Route path="/home" component={UserHome} />
-                  </Switch>
+                // for some reason this logic stops us from hitting our our last component
+                // isLoggedIn &&
+                //   <Switch>
+                //     {/* Routes placed here are only available after logging in */}
+                //     <Route exact path="/home" component={UserHome} />
+                //   </Switch>
               }
               {/* Displays our Login component as a fallback */}
               <Route component={Products} />
