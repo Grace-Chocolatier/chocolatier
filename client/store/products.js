@@ -23,6 +23,7 @@ export const fetchProducts = () =>
     axios.get('/api/products')
       .then(res =>
         dispatch(getProducts(res.data || defaultProducts)))
+      // OB/EC: report errors to the user, not the developer, e.g. with https://tomchentw.github.io/react-toastr/
       .catch(err => console.log(err))
 
 /**
