@@ -49,8 +49,8 @@ class Cart extends Component {
 					))}
 					</TableBody>
 				</Table>
-        <RaisedButton label="Confirm Order" style={style} onClick={event => this.props.onConfirm.call(this, event, this.props.user.id, this.props.cart)} />
-        <RaisedButton label="Clear Cart" style={style} onClick={this.props.onClear} />
+        <RaisedButton label="Confirm Order" style={style} onClick={event => this.props.onConfirm.call(this, event, this.props.user.id, this.props.cart)} disabled={!this.props.cart.length > 0} />
+        <RaisedButton label="Clear Cart" style={style} onClick={this.props.onClear} disabled={!this.props.cart.length > 0} />
 			</div>
 		)
 	}

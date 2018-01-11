@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import { postCart } from '../store/cart';
 import RaisedButton from 'material-ui/RaisedButton';
 
+const style = {
+  margin: 12,
+};
+
 class SingleProduct extends Component {
 
   constructor(props) {
@@ -28,9 +32,9 @@ class SingleProduct extends Component {
                 <input onChange={this.props.handleChange.bind(this)} type="text" value={this.state.quantity} name="name" />
             </label>
             <div className="listViewButtons">
-              <RaisedButton className="raised_button" label="Add To Cart" disabled={!this.state.quantity > 0} onClick={e => this.props.handleSubmit.call(this, e, this.props.product, this.state.quantity)} />
-              <RaisedButton className="raised_button" label="+" onClick={this.props.incrementQuantity.bind(this)} />
-              <RaisedButton className="raised_button" label="-" disabled={!this.state.quantity > 0} onClick={this.props.decrementQuantity.bind(this)} />
+              <RaisedButton className="raised_button" label="Add To Cart" disabled={!this.state.quantity > 0} onClick={e => this.props.handleSubmit.call(this, e, this.props.product, this.state.quantity)} style={style} />
+              <RaisedButton className="raised_button" label="+" onClick={this.props.incrementQuantity.bind(this)} style={style} />
+              <RaisedButton className="raised_button" label="-" disabled={!this.state.quantity > 0} style={style} onClick={this.props.decrementQuantity.bind(this)} />
             </div>
           </form>
         <h1>{product.name}</h1>
