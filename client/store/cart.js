@@ -61,7 +61,6 @@ export const clearCart = () =>
 export const makeOrder = (userId, currentCart) =>
     axios.post(`/api/order/${userId}`, currentCart)
     .then(res => res.data)
-    .then(clearCart)
     .catch(err => console.log(err))
 
 /**
