@@ -57,7 +57,7 @@ function mapDispatchToProps() {
 	return {
 		onClick: function (event, userId, cart) {
 			event.preventDefault();
-			makeOrder(userId || 0, cart);
+			makeOrder(userId, cart);
 		}
 	}
 }

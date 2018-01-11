@@ -12,8 +12,9 @@ const Order = db.define('order', {
 })
 
 Order.createOrder = function(userId, cart) {
-  let newOrder = Order.create({ userId })
-    .then(order => {
+  let newOrder;
+  userId ? newOrder = Order.create({ userId }) : newOrder = Order.create();
+    newOrder.then(order => {
       let orderItems = cart.map(item => {
         let orderItem = {
           orderId: order.id,
@@ -24,7 +25,7 @@ Order.createOrder = function(userId, cart) {
         return orderItem
       })
 
-      OrderItem.bulkCreate(orderItems)
+      return OrderItem.bulkCreate(orderItems)
     })
     .catch(err => console.error(err));
 
