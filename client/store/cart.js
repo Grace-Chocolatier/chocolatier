@@ -35,9 +35,9 @@ export const postCart = (product) =>
       })
       .catch(err => console.log(err))
 
-export const deleteItem = (product) =>
+export const deleteItem = (productId) =>
       dispatch =>
-        axios.put('/api/cart', product)
+        axios.delete('/api/cart/:productId')
         .then(res => res.data)
         .then(deletedProduct => {
           dispatch(removeFromCart(deletedProduct))
