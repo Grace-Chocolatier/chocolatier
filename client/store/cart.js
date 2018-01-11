@@ -37,7 +37,7 @@ export const postCart = (product) =>
 
 export const deleteItem = (productId) =>
       dispatch =>
-        axios.delete('/api/cart/:productId')
+        axios.delete(`/api/cart/${productId}`)
         .then(res => res.data)
         .then(deletedProduct => {
           dispatch(removeFromCart(deletedProduct))
