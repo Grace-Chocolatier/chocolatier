@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
-import { fetchCart, makeOrder } from '../store/cart';
+import { fetchCart, makeOrder, clearCart } from '../store/cart';
 import {
   Table,
   TableBody,
@@ -10,6 +10,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import Subheader from 'material-ui/Subheader';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
@@ -17,9 +18,17 @@ const style = {
 };
 
 class Cart extends Component {
+  constructor(props){
+    super(props);
+    this.state = {madeOrder: false}
+  }
+
 	render() {
 		return (
-			<div>
+      <div>
+       { this.state.madeOrder ?
+         <h3 className='subtext'>Order Successful!</h3> :
+         <h3 className='subtext'>Confirm Your Order</h3> }
 				<Table>
 					<TableHeader>
 						<TableRow>
@@ -40,7 +49,8 @@ class Cart extends Component {
 					))}
 					</TableBody>
 				</Table>
-				<RaisedButton label="Confirm Order" style={style} onClick={event => this.props.onClick(event, this.props.user.id)} />
+        <RaisedButton label="Confirm Order" style={style} onClick={event => this.props.onConfirm.call(this, event, this.props.user.id, this.props.cart)} disabled={!this.props.cart.length > 0} />
+        <RaisedButton label="Clear Cart" style={style} onClick={this.props.onClear} disabled={!this.props.cart.length > 0} />
 			</div>
 		)
 	}
@@ -53,12 +63,18 @@ function mapStateToProps(state) {
 	};
 }
 
-function mapDispatchToProps() {
+function mapDispatchToProps(dispatch) {
 	return {
-		onClick: function (event, user) {
+		onConfirm: function (event, userId, cart) {
 			event.preventDefault();
-			(user && user.id) ? makeOrder(user.id) : makeOrder(null);
-		}
+      makeOrder(userId, cart);
+      dispatch(clearCart())
+      this.setState({madeOrder: true})
+    },
+    onClear: function (event) {
+      event.preventDefault();
+      dispatch(clearCart())
+    }
 	}
 }
 

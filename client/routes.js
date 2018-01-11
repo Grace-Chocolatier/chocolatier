@@ -21,28 +21,16 @@ class Routes extends Component {
   }
 
   render () {
-    const {isLoggedIn} = this.props
-
     return (
       <Router history={history}>
         <MuiThemeProvider >
           <Main>
             <Switch>
-              {/* Routes placed here are available to all visitors */}
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/cart" component={Cart}/>
               <Route exact path='/products/:productId' component={SingleProduct} />
               <Route exact path='/users/:userId' component={SingleUser} />
-              {
-                // for some reason this logic stops us from hitting our our last component
-                // isLoggedIn &&
-                //   <Switch>
-                //     {/* Routes placed here are only available after logging in */}
-                //     <Route exact path="/home" component={UserHome} />
-                //   </Switch>
-              }
-              {/* Displays our Login component as a fallback */}
               <Route component={Products} />
             </Switch>
           </Main>

@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { fetchProduct } from '../store/product';
 import { connect } from 'react-redux';
 import { postCart } from '../store/cart';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const style = {
+  margin: 12,
+};
 
 class SingleProduct extends Component {
 
@@ -13,22 +18,26 @@ class SingleProduct extends Component {
   componentDidMount() {
     const productId = this.props.match.params.productId;
     this.props.getProduct(productId);
+    this.setState({quantity: 0});
   }
 
   render () {
     const { product } = this.props;
-
     return (
       <div>
 
-        <form onSubmit={(e) => this.props.handleSubmit(e, this.props.product, this.state.quantity)}>
-            <label>
+        <form onSubmit={(e) => this.props.handleSubmit.call(this, e, this.props.product, this.state.quantity)}>
+            <label className="subtext">
               Quantity:
                 <input onChange={this.props.handleChange.bind(this)} type="text" value={this.state.quantity} name="name" />
             </label>
-            <input type="submit" value="Submit" />
-          </form>
+        </form>
         <h1>{product.name}</h1>
+        <div className="listViewButtons">
+              <RaisedButton label="Add To Cart" disabled={!this.state.quantity > 0} onClick={e => this.props.handleSubmit.call(this, e, this.props.product, this.state.quantity)} style={style} />
+              <RaisedButton className="raised_button" label="+" onClick={this.props.incrementQuantity.bind(this)} style={style} />
+              <RaisedButton className="raised_button" label="-" disabled={!this.state.quantity > 0} style={style} onClick={this.props.decrementQuantity.bind(this)} />
+        </div>
       </div>
     );
   }
@@ -46,13 +55,24 @@ function mapDispatchToProps(dispatch) {
       dispatch(fetchProduct(productId));
     },
     handleSubmit: function (e, product, quantity) {
-      console.log(quantity, product);
+      quantity = +quantity
       e.preventDefault();
-      dispatch(postCart(Object.assign(product, {quantity})))
+      dispatch(postCart(Object.assign({}, product, {quantity})))
+      this.setState({quantity: 0})
     },
     handleChange: function (e) {
       e.preventDefault();
       this.setState({quantity: e.target.value})
+    },
+    incrementQuantity: function(e) {
+      e.preventDefault();
+      let quantity = this.state.quantity + 1
+      this.setState({ quantity })
+    },
+    decrementQuantity: function(e) {
+      e.preventDefault();
+      let quantity = this.state.quantity - 1
+      this.setState({ quantity })
     }
   }
 }
