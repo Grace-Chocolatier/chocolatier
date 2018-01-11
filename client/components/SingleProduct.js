@@ -18,7 +18,7 @@ class SingleProduct extends Component {
 
   render () {
     const { product } = this.props;
-
+    console.log(this.props.product)
     return (
       <div>
 
@@ -47,17 +47,9 @@ function mapDispatchToProps(dispatch) {
       dispatch(fetchProduct(productId));
     },
     handleSubmit: function (e, product, quantity) {
-      //I CAN'T FIGURE THIS OUT FOR THE LIFE OF ME
-      // 1. CLEAR BROWSER HISTORY
-      // 2. ADD 10 TO THE QUANTITY AND SUBMIT 3 TIMES
-      // 3. THE QUANTITY === 20 EACH TIME???? WHY???
-      // 4. WORKS PROPERLY AFTER PAGE REFRESH
-      // observation - somehow the product already has a quantity key on it when it hits this function? but i don't know how?
-      console.log('Product before adding quantity: ', product, "quantity: ", quantity)
-      product.quantity = +quantity
-      console.log('PRODUCT after adding quantity', product, 'quantity: ', quantity)
+      quantity = +quantity
       e.preventDefault();
-      dispatch(postCart(product))
+      dispatch(postCart(Object.assign({}, product, {quantity})))
       this.setState({quantity: 0})
     },
     handleChange: function (e) {
