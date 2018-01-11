@@ -40,7 +40,7 @@ class Cart extends Component {
 					))}
 					</TableBody>
 				</Table>
-				<RaisedButton label="Confirm Order" style={style} onClick={event => this.props.onClick(event, this.props.user.id)} />
+				<RaisedButton label="Confirm Order" style={style} onClick={event => this.props.onClick(event, this.props.user.id, this.props.cart)} />
 			</div>
 		)
 	}
@@ -55,9 +55,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps() {
 	return {
-		onClick: function (event, user) {
+		onClick: function (event, userId, cart) {
 			event.preventDefault();
-			(user && user.id) ? makeOrder(user.id) : makeOrder(null);
+			makeOrder(userId || 0, cart);
 		}
 	}
 }

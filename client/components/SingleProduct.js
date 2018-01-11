@@ -13,6 +13,7 @@ class SingleProduct extends Component {
   componentDidMount() {
     const productId = this.props.match.params.productId;
     this.props.getProduct(productId);
+    this.setState({quantity: 0});
   }
 
   render () {
@@ -21,7 +22,7 @@ class SingleProduct extends Component {
     return (
       <div>
 
-        <form onSubmit={(e) => this.props.handleSubmit(e, this.props.product, this.state.quantity)}>
+        <form onSubmit={(e) => this.props.handleSubmit.call(this, e, this.props.product, this.state.quantity)}>
             <label>
               Quantity:
                 <input onChange={this.props.handleChange.bind(this)} type="text" value={this.state.quantity} name="name" />
@@ -46,9 +47,18 @@ function mapDispatchToProps(dispatch) {
       dispatch(fetchProduct(productId));
     },
     handleSubmit: function (e, product, quantity) {
-      console.log(quantity, product);
+      //I CAN'T FIGURE THIS OUT FOR THE LIFE OF ME
+      // 1. CLEAR BROWSER HISTORY
+      // 2. ADD 10 TO THE QUANTITY AND SUBMIT 3 TIMES
+      // 3. THE QUANTITY === 20 EACH TIME???? WHY???
+      // 4. WORKS PROPERLY AFTER PAGE REFRESH
+      // observation - somehow the product already has a quantity key on it when it hits this function? but i don't know how?
+      console.log('Product before adding quantity: ', product, "quantity: ", quantity)
+      product.quantity = +quantity
+      console.log('PRODUCT after adding quantity', product, 'quantity: ', quantity)
       e.preventDefault();
-      dispatch(postCart(Object.assign(product, {quantity})))
+      dispatch(postCart(product))
+      this.setState({quantity: 0})
     },
     handleChange: function (e) {
       e.preventDefault();
