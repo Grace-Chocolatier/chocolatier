@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
-import { fetchCart, makeOrder } from '../store/cart';
+import { fetchCart, makeOrder, clearCart } from '../store/cart';
 import {
   Table,
   TableBody,
@@ -53,11 +53,12 @@ function mapStateToProps(state) {
 	};
 }
 
-function mapDispatchToProps() {
+function mapDispatchToProps(dispatch) {
 	return {
 		onClick: function (event, userId, cart) {
 			event.preventDefault();
-			makeOrder(userId, cart);
+      makeOrder(userId, cart);
+      dispatch(clearCart())
 		}
 	}
 }
