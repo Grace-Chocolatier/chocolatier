@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { fetchProduct } from '../store/product';
 import { connect } from 'react-redux';
 import { postCart } from '../store/cart';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class SingleProduct extends Component {
 
@@ -18,16 +19,19 @@ class SingleProduct extends Component {
 
   render () {
     const { product } = this.props;
-    console.log(this.props.product)
     return (
       <div>
 
         <form onSubmit={(e) => this.props.handleSubmit.call(this, e, this.props.product, this.state.quantity)}>
-            <label>
+            <label className="subtext">
               Quantity:
                 <input onChange={this.props.handleChange.bind(this)} type="text" value={this.state.quantity} name="name" />
             </label>
-            <input type="submit" value="Submit" />
+            <div className="listViewButtons">
+              <RaisedButton className="raised_button" label="Add To Cart" onClick={e => this.props.handleSubmit.call(this, e, this.props.product, this.state.quantity)} />
+              <RaisedButton className="raised_button" label="+" onClick={this.props.incrementQuantity.bind(this)} />
+              <RaisedButton className="raised_button" label="-" onClick={this.props.decrementQuantity.bind(this)} />
+            </div>
           </form>
         <h1>{product.name}</h1>
       </div>
@@ -55,6 +59,16 @@ function mapDispatchToProps(dispatch) {
     handleChange: function (e) {
       e.preventDefault();
       this.setState({quantity: e.target.value})
+    },
+    incrementQuantity: function(e) {
+      e.preventDefault();
+      let quantity = this.state.quantity + 1
+      this.setState({ quantity })
+    },
+    decrementQuantity: function(e) {
+      e.preventDefault();
+      let quantity = this.state.quantity - 1
+      this.setState({ quantity })
     }
   }
 }
