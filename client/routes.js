@@ -31,6 +31,11 @@ class Routes extends Component {
               <Route path="/cart" component={Cart}/>
               <Route exact path='/products/:productId' component={SingleProduct} />
               <Route exact path='/users/:userId' component={SingleUser} />
+              {/*
+              <Route exact path='/manage/users' component={ManageUsers} />
+              <Route exact path='/manage/products' component={ManageProducts} />
+              <Route exact path='/manage/orders' component={ManageOrders} />
+              */}
               <Route component={Products} />
             </Switch>
           </Main>
