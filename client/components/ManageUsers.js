@@ -16,12 +16,12 @@ class ManageUsers extends Component {
 
   constructor(props){
     super(props)
-    this.state = {selectedRow: [-1]}
+    this.state = {selectedRow: [-1], currentSelected: {}}
   }
 
   componentDidMount(){
     this.props.getUsers()
-    // this.props.clearSelectedUser();
+    this.props.clearSelectedUser.call(this);
   }
 
   render() {
@@ -35,16 +35,17 @@ class ManageUsers extends Component {
               <TableRow >
                 <TableHeaderColumn>ID</TableHeaderColumn>
                 <TableHeaderColumn>Name</TableHeaderColumn>
+                <TableHeaderColumn>Admin</TableHeaderColumn>
               </TableRow>
             </TableHeader>
 
             <TableBody deselectOnClickaway={false} displayRowCheckbox={true}>
               {this.props.users.map((user, idx) => {
-                console.log(idx)
                 return (
                   <TableRow key={user.id} selected={this.props.isSelected.call(this, idx)}>
                     <TableRowColumn>{user.id}</TableRowColumn>
                     <TableRowColumn>{user.email}</TableRowColumn>
+                    <TableRowColumn>{user.isAdmin}</TableRowColumn>
                   </TableRow>
                 )
               })}
@@ -57,7 +58,6 @@ class ManageUsers extends Component {
 function mapStateToProps(state){
   return {
     users: state.users
-    // selectedUser: state.selectedUser
   };
 }
 
@@ -66,21 +66,16 @@ function mapDispatchToProps(dispatch){
     getUsers: function (){
       dispatch(fetchUsers())
     },
-    // clearSelectedStudent: function (){
-    //   dispatch(selectedUserFromList({}));
-    // },
+    clearSelectedUser: function (){
+      this.setState({selectedRow: [-1]});
+    },
     handleRowSelection: function (row){
-      // row.length ? dispatch(selectedUserFromList(student)) : dispatch(selectedUserFromList({}))
-      this.setState({ selectedRow: row })
-//       this.setState({selectedRow: row[0]})
+      this.setState({ selectedRow: row, currentSelected: this.props.users[row[0]]})
     },
     isSelected: function (index) {
       let selected = this.state.selectedRow.indexOf(index) !== -1;
       return selected
     }
-//     updatePage: function (nextProps){
-//       this.setState({selectedRow: null})
-//     }
   }
 }
 
