@@ -17,28 +17,29 @@ const Main = (props) => {
     <div>
       <h1 id="logo">Grace Chocolatier</h1>
       <nav>
-        {
-          isLoggedIn
-            ? <div>
-              <h3>
-                <Link to={`/user/${id}`}>Welcome {email} </Link>
-              </h3>
-              {/* The navbar will show these links after you log in */}
-              <Link to="/">Home</Link>
-              <a href="#" onClick={handleClick}>Logout</a>
-              <Link to="/cart">Cart</Link>
-            </div>
-            : <div>
-              {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-              <Link to="/cart">Cart</Link>
-            </div>
-        }
-      </nav>
-      <hr />
+      {
+        isLoggedIn
+          ? <div>
+            <h3>
+              <Link to={`/users/${id}`}>Welcome {email} </Link>
+            </h3>
+            {/* The navbar will show these links after you log in */}
+            <Link to="/">Home</Link>
+            <a href="#" onClick={handleClick}>Logout</a>
+            <Link to="/cart">Cart</Link>
+          </div>
+          : <div>
+            {/* The navbar will show these links before you log in */}
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+            <Link to="/cart">Cart</Link>
+          </div>
+      }
+    </nav>
+    <hr />
       {children}
-    </div>
+
+      </div>
   )
 }
 
