@@ -62,7 +62,7 @@ function mapDispatchToProps(dispatch) {
     },
     handleChange: function (e) {
       e.preventDefault();
-      this.setState({quantity: e.target.value})
+      this.setState({quantity: Number(e.target.value)})
     },
     incrementQuantity: function(e) {
       e.preventDefault();
