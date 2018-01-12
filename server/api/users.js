@@ -36,7 +36,8 @@ router.delete('/:id', (req, res, next) => {
 // for updating a user
 router.put('/:id', (req, res, next) => {
   // if (req.user.isAdmin) {
-  User.update({ isAdmin: Boolean(req.params.isAdmin) }, { where: { id: Number(req.params.id)}})
+    console.log(req.query.isAdmin)
+  User.update({ isAdmin: Boolean(req.query.isAdmin) }, { where: { id: Number(req.params.id)}})
   .then(updatedUser => {
     res.json(updatedUser)
   })

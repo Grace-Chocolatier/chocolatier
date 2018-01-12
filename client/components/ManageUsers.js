@@ -7,10 +7,13 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import { fetchUsers } from '../store/users';
+import { fetchUsers, deleteUser, updateUser } from '../store/users';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import RaisedButton from 'material-ui/RaisedButton';
+import axios from 'axios'
 
+const style = {}
 
 class ManageUsers extends Component {
 
@@ -26,6 +29,7 @@ class ManageUsers extends Component {
 
   render() {
       return (
+        <div>
           <Table
             onRowSelection={(row) => {
             this.props.handleRowSelection.call(this, row)} }
@@ -45,12 +49,15 @@ class ManageUsers extends Component {
                   <TableRow key={user.id} selected={this.props.isSelected.call(this, idx)}>
                     <TableRowColumn>{user.id}</TableRowColumn>
                     <TableRowColumn>{user.email}</TableRowColumn>
-                    <TableRowColumn>{user.isAdmin}</TableRowColumn>
+                    <TableRowColumn>{user.isAdmin.toString()}</TableRowColumn>
                   </TableRow>
                 )
               })}
             </TableBody>
           </Table>
+          <RaisedButton className="raised_button" label="Delete User" disabled={false} style={style} onClick={this.props.deleteUser.bind(this, this.state.currentSelected)} />
+          <RaisedButton className="raised_button" label="Make An Admin" disabled={false} style={style} onClick={this.props.makeAdmin.bind(this, this.state.currentSelected)} />
+        </div>
       )
   }
 }
@@ -75,6 +82,14 @@ function mapDispatchToProps(dispatch){
     isSelected: function (index) {
       let selected = this.state.selectedRow.indexOf(index) !== -1;
       return selected
+    },
+    deleteUser: function(user) {
+      dispatch(deleteUser(user))
+      .then(() => this.setState({ selectedRow: [ -1 ], currentSelected: {}}))
+    },
+    makeAdmin: function(user) {
+      dispatch(updateUser(user))
+      .then(() => this.setState({ selectedRow: [ -1 ], currentSelected: {}}))
     }
   }
 }
