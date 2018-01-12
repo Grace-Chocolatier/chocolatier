@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Route, Switch, Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome} from './components'
+import {Main, Login, Signup, UserHome } from './components'
 import {me} from './store'
 import Products from './components/Products';
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles';
@@ -11,6 +11,7 @@ import SingleProduct from './components/SingleProduct';
 import SingleUser from './components/SingleUser';
 import Cart from './components/cart';
 import {fetchCart} from './store/cart';
+import ManageUsers from './components/ManageUsers'
 
 /**
  * COMPONENT
@@ -31,8 +32,8 @@ class Routes extends Component {
               <Route path="/cart" component={Cart}/>
               <Route exact path='/products/:productId' component={SingleProduct} />
               <Route exact path='/users/:userId' component={SingleUser} />
-              {/*
               <Route exact path='/manage/users' component={ManageUsers} />
+              {/*
               <Route exact path='/manage/products' component={ManageProducts} />
               <Route exact path='/manage/orders' component={ManageOrders} />
               */}
