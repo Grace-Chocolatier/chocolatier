@@ -10,7 +10,9 @@ const GET_USER_ORDERS = 'GET_USER_ORDERS'
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const defaultUser = {
+  user: {}
+}
 
 /**
  * ACTION CREATORS
@@ -68,11 +70,11 @@ export const logout = () =>
 export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      return action.user
+      return action.user;
     case REMOVE_USER:
       return defaultUser
     case GET_USER_ORDERS:
-      return action.orders
+      return action.order
     default:
       return state
   }

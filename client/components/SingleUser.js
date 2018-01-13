@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchUser } from '../store/user'
+import { fetchOrders } from '../store/orders'
 
 class SingleUser extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      orders: []
+    }
   }
 
   componentDidMount() {
     const userId = this.props.match.params.userId
-    this.props.getUser(userId);
-    console.log(this.props.user)
+    this.props.getOrders(userId);
   }
   render () {
+    const { user, orders } = this.props;
     return (
       <div>
-        <h1>{this.props.user.email}</h1>
+        <h1>{user.email}</h1>
+        <ul>
+          {
+            orders.map((order) => {
+              return <li key={order.id}>{order.id}</li>
+            })
+          }
+        </ul>
       </div>
     );
   }
@@ -25,15 +35,16 @@ class SingleUser extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    orders: state.orders
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUser: function (user){
-      dispatch(fetchUser(user));
-    },
+    getOrders: function (userId) {
+      dispatch(fetchOrders(userId))
+    }
   }
 }
 
