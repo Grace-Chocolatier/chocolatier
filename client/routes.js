@@ -3,12 +3,13 @@ import {connect} from 'react-redux'
 import {Route, Switch, Router} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome} from './components'
+import {Main, Login, Signup, UserHome } from './components'
 import {me} from './store'
 import Products from './components/Products';
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles';
 import SingleProduct from './components/SingleProduct';
 import SingleUser from './components/SingleUser';
+import Admin from './components/Admin';
 import Cart from './components/cart';
 import {fetchCart} from './store/cart';
 
@@ -26,6 +27,7 @@ class Routes extends Component {
         <MuiThemeProvider >
           <Main>
             <Switch>
+              <Route path="/admin" component={Admin} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/cart" component={Cart}/>
