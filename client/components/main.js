@@ -15,7 +15,7 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1 id="logo">Grace Chocolatier</h1>
+      <Link to='/'><h1 id="logo">Grace Chocolatier</h1></Link>
       <nav>
         {
           isLoggedIn
