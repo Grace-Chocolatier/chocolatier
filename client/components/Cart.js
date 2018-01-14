@@ -10,6 +10,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import Subheader from 'material-ui/Subheader';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
@@ -17,9 +18,17 @@ const style = {
 };
 
 class Cart extends Component {
+  constructor(props){
+    super(props);
+    this.state = {madeOrder: false}
+  }
+
 	render() {
 		return (
-			<div>
+      <div>
+       { this.state.madeOrder ?
+         <h3 className='subtext'>Order Successful!</h3> :
+         <h3 className='subtext'>Confirm Your Order</h3> }
 				<Table>
 					<TableHeader>
 						<TableRow>
@@ -40,8 +49,8 @@ class Cart extends Component {
 					))}
 					</TableBody>
 				</Table>
-        <RaisedButton label="Confirm Order" style={style} onClick={event => this.props.onConfirm(event, this.props.user.id, this.props.cart)} />
-        <RaisedButton label="Clear Cart" style={style} onClick={this.props.onClear} />
+        <RaisedButton label="Confirm Order" style={style} onClick={event => this.props.onConfirm.call(this, event, this.props.user.id, this.props.cart)} disabled={!this.props.cart.length > 0} />
+        <RaisedButton label="Clear Cart" style={style} onClick={this.props.onClear} disabled={!this.props.cart.length > 0} />
 			</div>
 		)
 	}
@@ -60,6 +69,7 @@ function mapDispatchToProps(dispatch) {
 			event.preventDefault();
       makeOrder(userId, cart);
       dispatch(clearCart())
+      this.setState({madeOrder: true})
     },
     onClear: function (event) {
       event.preventDefault();
