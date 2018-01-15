@@ -17,7 +17,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 const style = {
   margin: 12,
 };
-
+// OB/EC: watch out for consistent indentation
 class Cart extends Component {
   constructor(props){
     super(props);
@@ -80,6 +80,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		onConfirm: function (event, userId, cart) {
 			event.preventDefault();
+			// OB/EC: could be shortened to makeOrder(user && user.id)
       orderUtils.makeOrder(userId, cart);
       dispatch(clearCart())
       this.setState({madeOrder: true})

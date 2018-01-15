@@ -16,6 +16,7 @@ class SingleProduct extends Component {
   }
 
   componentDidMount() {
+    // OB/EC: potential bug, consider doing this in `componentWillReceiveProps` and only when the nextProps.match.params.productId is different than the this.props.match.params.productId
     const productId = this.props.match.params.productId;
     this.props.getProduct(productId);
     this.setState({quantity: 0});

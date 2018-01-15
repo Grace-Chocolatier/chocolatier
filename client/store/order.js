@@ -18,6 +18,8 @@ const getOrder = order => ({type: GET_ORDER, order})
 /**
  * THUNK CREATORS
  */
+// create a makeOrder THUNK moving from orderUtil
+
 export const fetchOrder = (orderId) =>
   dispatch =>
     axios.get(`/api/orders/${orderId}`)

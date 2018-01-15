@@ -1,5 +1,6 @@
+// OB/EC: recommend changing the name, because this isn't exactly "middleware", could just be `cartUtil`
 const cartUtils = {}
-
+// make a copy of cart for immutability
 cartUtils.removeItemFromCart = (cart, item) => {
     let newCart = [];
     for (var i = 0; i < cart.length; i++) {
@@ -11,7 +12,7 @@ cartUtils.removeItemFromCart = (cart, item) => {
 }
 
 cartUtils.addItem = function(cart, product){
-  let newCart = cart.map(item => item);
+  let newCart = cart.map(item => item); // cart.slice();
   if (cart.length === 0) newCart.push(product)
   else {
     for (let i = 0; i < cart.length; i++){
@@ -22,6 +23,7 @@ cartUtils.addItem = function(cart, product){
         return newCart
       }
     }
+    // to see whether it's worth mutate the same product quantity in the cart
     newCart.push(product);
   }
   return newCart;

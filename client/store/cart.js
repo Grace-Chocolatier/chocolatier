@@ -25,7 +25,7 @@ const empty = () => ({type: CLEAR_CART});
 /**
  * THUNK CREATORS
  */
-
+// OB/EC: need dispatch, maybe for clearing the cart
 export const postCart = (product) =>
   dispatch =>
     axios.post('/api/cart', product)
@@ -37,7 +37,7 @@ export const postCart = (product) =>
 
 export const deleteItem = (product) =>
       dispatch =>
-        axios.put('/api/cart', product)
+        axios.put('/api/cart', product) // axios.delete('api/cart/productId');
         .then(res => res.data)
         .then(deletedProduct => {
           dispatch(removeFromCart(deletedProduct))

@@ -7,6 +7,7 @@ const Order = db.define('order', {
     type: Sequelize.STRING,
     defaultValue: 'Created'
   },
+  // OB/EC: this data is redundant with order_item's price, but you've thought about this, so yay!
   order_total: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
@@ -32,7 +33,7 @@ Order.createOrder = function(userId, cart) {
 
       return OrderItem.bulkCreate(orderItems)
     })
-    .catch(err => console.error(err));
+    .catch(err => console.error(err)); // no need catch
 
   return newOrder;
 }
