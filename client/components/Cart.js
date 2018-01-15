@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
-import { fetchCart, makeOrder, clearCart } from '../store/cart';
+import { fetchCart, clearCart } from '../store/cart';
+import orderUtils from '/utils/orderUtils';
 import {
   Table,
   TableBody,
@@ -27,30 +28,42 @@ class Cart extends Component {
 		return (
       <div>
        { this.state.madeOrder ?
-         <h3 className='subtext'>Order Successful!</h3> :
-         <h3 className='subtext'>Confirm Your Order</h3> }
+      	<h3 className='subtext'>Order Successful!</h3> :
+				<h3 className='subtext'>Confirm Your Order</h3> }
+
 				<Table>
 					<TableHeader>
 						<TableRow>
 							<TableHeaderColumn> </TableHeaderColumn>
-		   					<TableHeaderColumn>Name</TableHeaderColumn>
-					        <TableHeaderColumn>Price</TableHeaderColumn>
-					        <TableHeaderColumn>Quantity</TableHeaderColumn>
-	 					</TableRow>
+							<TableHeaderColumn>Name</TableHeaderColumn>
+							<TableHeaderColumn>Price</TableHeaderColumn>
+							<TableHeaderColumn>Quantity</TableHeaderColumn>
+						</TableRow>
 					</TableHeader>
+
 					<TableBody>
-					{this.props.cart.map((product) => (
-						<TableRow key={product.id}>
-					        <TableRowColumn><img src={product.imgUrl} /></TableRowColumn>
-					        <TableRowColumn><Link to={`/products/${product.id}`}>{product.name}</Link></TableRowColumn>
-					        <TableRowColumn>${product.price}</TableRowColumn>
-					        <TableRowColumn>{product.quantity}</TableRowColumn>
-				      	</TableRow>
-					))}
+						{this.props.cart.map((product) => (
+							<TableRow key={product.id}>
+								<TableRowColumn><img src={product.imgUrl} /></TableRowColumn>
+								<TableRowColumn><Link to={`/products/${product.id}`}>{product.name}</Link></TableRowColumn>
+								<TableRowColumn>${product.price}</TableRowColumn>
+								<TableRowColumn>{product.quantity}</TableRowColumn>
+							</TableRow>
+						))}
 					</TableBody>
 				</Table>
-        <RaisedButton label="Confirm Order" style={style} onClick={event => this.props.onConfirm.call(this, event, this.props.user.id, this.props.cart)} disabled={!this.props.cart.length > 0} />
-        <RaisedButton label="Clear Cart" style={style} onClick={this.props.onClear} disabled={!this.props.cart.length > 0} />
+
+				<RaisedButton
+					label="Confirm Order"
+					style={style}
+					onClick={event => this.props.onConfirm.call(this, event, this.props.user.id, this.props.cart)}
+					disabled={!this.props.cart.length > 0} />
+
+				<RaisedButton
+					label="Clear Cart"
+					style={style}
+					onClick={this.props.onClear}
+					disabled={!this.props.cart.length > 0} />
 			</div>
 		)
 	}
@@ -67,7 +80,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		onConfirm: function (event, userId, cart) {
 			event.preventDefault();
-      makeOrder(userId, cart);
+      orderUtils.makeOrder(userId, cart);
       dispatch(clearCart())
       this.setState({madeOrder: true})
     },
