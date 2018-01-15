@@ -9,17 +9,9 @@ const Order = db.define('order', {
   },
   order_total: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
-  }
-}, {
-  getterMethods: {
-    centsToDollars() {
-      return this.item_total / 100;
-    }
-  },
-  setterMethods: {
-    dollarsToCents(dollars) {
-      this.setDataValue('item_total', dollars * 100);
+    defaultValue: 0,
+    get() {
+      return this.getDataValue('order_total') / 100;
     }
   }
 })

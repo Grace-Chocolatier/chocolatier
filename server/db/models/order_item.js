@@ -8,16 +8,11 @@ const Order_item = db.define('order_item', {
   },
   item_total: {
     type: Sequelize.INTEGER,
-    allowNull: false
-  }
-}, {
-  getterMethods: {
-    centsToDollars() {
-      return this.item_total / 100;
-    }
-  },
-  setterMethods: {
-    dollarsToCents(dollars) {
+    allowNull: false,
+    get(){
+      return this.getDataValue('item_total') / 100;
+    },
+    set(dollars){
       this.setDataValue('item_total', dollars * 100);
     }
   }
