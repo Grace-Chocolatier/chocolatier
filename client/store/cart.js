@@ -58,11 +58,6 @@ export const clearCart = () =>
           axios.delete('/api/cart')
           .then(() => dispatch(empty()))
 
-export const makeOrder = (userId, currentCart) =>
-    axios.post(`/api/orders/${userId}`, currentCart)
-    .then(res => res.data)
-    .catch(err => console.log(err))
-
 /**
  * REDUCER
  */

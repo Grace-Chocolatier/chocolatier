@@ -7,8 +7,14 @@ const Order_item = db.define('order_item', {
     defaultValue: 1
   },
   item_total: {
-    type: Sequelize.FLOAT,
-    allowNull: false
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    get(){
+      return this.getDataValue('item_total') / 100;
+    },
+    set(dollars){
+      this.setDataValue('item_total', dollars * 100);
+    }
   }
 })
 
