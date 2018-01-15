@@ -16,7 +16,7 @@ describe('Products', () => {
 				{name: 'Butterscotch Square'},
 				{name: 'Cafe au Lait Truffle'},
 				{name: 'Chelsea'}
-			]} />)
+			]} categories={[]} />)
 	})
 
 	it('renders something', () => {

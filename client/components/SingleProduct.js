@@ -61,6 +61,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(postCart(Object.assign({}, product, {quantity})))
       this.setState({quantity: 0})
     },
+    // add handleChange, incrementQuantity, decrementQuantity to class method
     handleChange: function (e) {
       e.preventDefault();
       this.setState({quantity: Number(e.target.value)})
