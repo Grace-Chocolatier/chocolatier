@@ -16,11 +16,7 @@ const Main = (props) => {
 
   return (
     <div>
-<<<<<<< HEAD
       <Link to="/"><h1 id="logo"><img src="chocolatier_logo.svg" /></h1></Link>
-=======
-      <Link to='/'><h1 id="logo">Grace Chocolatier</h1></Link>
->>>>>>> b81553cd60288b6ac88c5a84d7f5106df4206bde
       <nav>
         {
           isLoggedIn
