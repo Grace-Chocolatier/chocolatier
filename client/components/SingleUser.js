@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchOrders } from '../store/orders'
+import { fetchProduct } from '../store/products';
 
 class SingleUser extends Component {
 
@@ -15,6 +16,7 @@ class SingleUser extends Component {
   componentDidMount() {
     const userId = this.props.match.params.userId
     this.props.getOrders(userId);
+
   }
   render () {
     const { user, orders } = this.props;
@@ -44,6 +46,9 @@ function mapDispatchToProps(dispatch) {
   return {
     getOrders: function (userId) {
       dispatch(fetchOrders(userId))
+    },
+    getProduct: function(productId) {
+      dispatch(fetchProduct(productId))
     }
   }
 }

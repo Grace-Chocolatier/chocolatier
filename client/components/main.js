@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
+import AdminDropdown from './AdminDropdown';
 
 /**
  * COMPONENT
@@ -15,8 +16,9 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1 id="logo">Grace Chocolatier</h1>
+      <Link to="/"><h1 id="logo"><img src="chocolatier_logo.svg" /></h1></Link>
       <nav>
+<<<<<<< HEAD
       {
         isLoggedIn
           ? <div>
@@ -37,6 +39,29 @@ const Main = (props) => {
       }
     </nav>
     <hr />
+=======
+        {
+          isLoggedIn
+            ? <div id="nav_links">
+              <h3>
+                <Link to={`/user/${id}`}>Welcome {email} </Link>
+              </h3>
+              {/* The navbar will show these links after you log in */}
+              <Link to="/">Home</Link>
+              <a href="#" onClick={handleClick}>Logout</a>
+              <Link to="/cart">Cart</Link>
+            </div>
+            : <div id="nav_links">
+              {/* The navbar will show these links before you log in */}
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
+              <Link to="/cart">Cart</Link>
+              <AdminDropdown />
+            </div>
+        }
+      </nav>
+      <hr />
+>>>>>>> 2b7ae772c9f8f11a2ddca9c812c8fa72740d9307
       {children}
 
       </div>
