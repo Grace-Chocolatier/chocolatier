@@ -36,25 +36,6 @@ export class Products extends Component {
   }
 
   render(){
-<<<<<<< HEAD
-    return(
-      <div id="products_container">
-        <div style={styles.root}>
-          <GridList cellHeight={250} padding={20} cols={4} style={styles.gridList} >
-            <Subheader className='subheader'>Products</Subheader>
-            {this.props.products.map((product) => (
-              <GridTile
-                containerElement={<Link to={`/products/${product.id}`} />}
-                key={product.id}
-                className="chocolate_grid_tile"
-                title={product.name}
-                subtitle={<span> See More </span>}
-                actionIcon={<IconButton><ActionInfo color="white" /></IconButton>}
-              >
-                <img src={product.imageUrl} />
-              </GridTile>
-            ))}
-=======
     return (
       <div>
         <h1 align="center">Chocolates</h1>
@@ -91,7 +72,6 @@ export class Products extends Component {
                   <img src={product.imageUrl} />
                 </GridTile>
             )}
->>>>>>> b81553cd60288b6ac88c5a84d7f5106df4206bde
           </GridList>
         </div>
       </div>
