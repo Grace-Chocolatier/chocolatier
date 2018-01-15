@@ -15,7 +15,7 @@ export default class AdminDropdown extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="admin_drop">
         <DropDownMenu value={1} onChange={this.handleChange}>
           <MenuItem value={1} primaryText="Admin Console" />
           <Link to="/manage/users"><MenuItem value={2} primaryText="Users" /></Link>

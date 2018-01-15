@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
-  background-color: #3b1c0e;
+  background-color: #300B03;
+  margin:0;
 }
 
 a {
@@ -12,9 +13,29 @@ label {
   display: block;
 }
 
+nav {
+  position: static;
+  top:0;  background-colr: #000;
+  right:0;
+  width:100%;
+}
 nav a {
   display: inline-block;
   margin: 1em;
+}
+
+#admin_drop{
+  display:inline-block;
+}
+
+#nav_links {
+  position:absolute;
+  right:0;
+}
+
+#nav_links a {
+  display:inline-block;
+  top:0;
 }
 
 form div {
@@ -23,12 +44,13 @@ form div {
 }
 
 #logo {
-  font-family: 'Monsieur La Doulaise', cursive;
-  font-size: 60px;
-  color: #c29200;
   text-align: center;
 }
 
 .subtext {
   color: #c29200;
+}
+
+#products_container{
+  padding:0 4%;
 }
