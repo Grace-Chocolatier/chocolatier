@@ -36,7 +36,7 @@ export const deleteUser = user =>
 export const updateUser = user =>
   dispatch =>
     axios.put(`/api/users/${user.id}?isAdmin=true`)
-      .then(() => dispatch(upUser(user)))
+      .then((updatedUser) => dispatch(upUser(updatedUser.data)))
       .catch(err => console.log(err))
 /**
  * REDUCER
@@ -50,7 +50,6 @@ export default function (state = defaultUsers, action) {
     case DELETE_USER:
       return state.filter(user => user.id !== action.user.id)
     case UPDATE_USER:
-      console.log(action.user)
       return state.map(user => {
         if (user.id === action.user.id) return action.user ;
         else return user;

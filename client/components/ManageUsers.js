@@ -9,9 +9,7 @@ import {
 } from 'material-ui/Table';
 import { fetchUsers, deleteUser, updateUser } from '../store/users';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
-import axios from 'axios'
 
 const style = {}
 
@@ -32,8 +30,7 @@ class ManageUsers extends Component {
         <div>
           <Table
             onRowSelection={(row) => {
-            this.props.handleRowSelection.call(this, row)} }
-            className="student_table">
+            this.props.handleRowSelection.call(this, row)} } >
 
             <TableHeader adjustForCheckbox={true} displaySelectAll={false}>
               <TableRow >

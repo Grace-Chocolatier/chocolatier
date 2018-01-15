@@ -12,6 +12,8 @@ import SingleUser from './components/SingleUser';
 import Cart from './components/cart';
 import {fetchCart} from './store/cart';
 import ManageUsers from './components/ManageUsers'
+import ManageOrders from './components/ManageOrders'
+import SingleOrder from './components/SingleOrder'
 
 /**
  * COMPONENT
@@ -35,8 +37,9 @@ class Routes extends Component {
               <Route exact path='/manage/users' component={ManageUsers} />
               {/*
               <Route exact path='/manage/products' component={ManageProducts} />
-              <Route exact path='/manage/orders' component={ManageOrders} />
               */}
+              <Route exact path='/manage/orders' component={ManageOrders} />
+              <Route exact path='/manage/orders/:orderId' component={SingleOrder} />
               <Route component={Products} />
             </Switch>
           </Main>
