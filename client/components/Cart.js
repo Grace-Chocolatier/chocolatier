@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import { fetchCart, clearCart } from '../store/cart';
-import orderUtils from '/utils/orderUtils';
+import orderUtils from '../../utils/orderUtils';
 import {
   Table,
   TableBody,
