@@ -5,11 +5,9 @@ const OrderItem = require('./order_item');
 const Order = db.define('order', {
   status: {
     type: Sequelize.STRING,
-    defaultValue: 'Created'
   },
   order_total: {
-    type: Sequelize.FLOAT,
-    defaultValue: 0
+    type: Sequelize.FLOAT
   }
 })
 
