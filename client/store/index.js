@@ -6,19 +6,13 @@ import user from './user'
 import products from './products'
 import product from './product'
 import cart from './cart';
-<<<<<<< HEAD
-import orders from './orders';
-
-
-const reducer = combineReducers({user, products, product, cart, orders})
-=======
 import users from './users'
 import orders from './orders'
 import singleOrder from './order'
+import categories from './categories'
 
 
-const reducer = combineReducers({user, products, product, cart, users, orders, singleOrder})
->>>>>>> 2b7ae772c9f8f11a2ddca9c812c8fa72740d9307
+const reducer = combineReducers({user, products, product, cart, users, orders, singleOrder, categories})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})

@@ -60,7 +60,7 @@ export class Products extends Component {
         </DropDownMenu>
         </div>
         <div id="products_container">
-          <GridList cellHeight={250} padding={20} cols={4} style={styles.gridList} >
+          <GridList cellHeight={250} padding={20} cols={4} >
             {this.state.currentProducts.map((product) => 
                 <GridTile
                   containerElement={<Link to={`/products/${product.id}`} />}
