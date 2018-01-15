@@ -22,9 +22,9 @@ class Products extends Component {
 
   render(){
     return(
-      <div>
+      <div id="products_container">
         <div style={styles.root}>
-          <GridList cellHeight={350} style={styles.gridList} >
+          <GridList cellHeight={250} padding={20} cols={4} style={styles.gridList} >
             <Subheader className='subheader'>Products</Subheader>
             {this.props.products.map((product) => (
               <GridTile

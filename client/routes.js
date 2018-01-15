@@ -9,7 +9,6 @@ import Products from './components/Products';
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles';
 import SingleProduct from './components/SingleProduct';
 import SingleUser from './components/SingleUser';
-import Admin from './components/Admin';
 import Cart from './components/cart';
 import {fetchCart} from './store/cart';
 import ManageUsers from './components/ManageUsers'
@@ -28,7 +27,6 @@ class Routes extends Component {
         <MuiThemeProvider >
           <Main>
             <Switch>
-              <Route path="/admin" component={Admin} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/cart" component={Cart}/>

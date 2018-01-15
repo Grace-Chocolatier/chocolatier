@@ -16,11 +16,11 @@ const Main = (props) => {
 
   return (
     <div>
-      <h1 id="logo">Grace Chocolatier</h1>
+      <Link to="/"><h1 id="logo"><img src="chocolatier_logo.svg" /></h1></Link>
       <nav>
         {
           isLoggedIn
-            ? <div>
+            ? <div id="nav_links">
               <h3>
                 <Link to={`/user/${id}`}>Welcome {email} </Link>
               </h3>
@@ -29,16 +29,14 @@ const Main = (props) => {
               <a href="#" onClick={handleClick}>Logout</a>
               <Link to="/cart">Cart</Link>
             </div>
-            : <div>
+            : <div id="nav_links">
               {/* The navbar will show these links before you log in */}
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
               <Link to="/cart">Cart</Link>
+              <AdminDropdown />
             </div>
         }
-        <div>
-          <AdminDropdown />
-        </div>
       </nav>
       <hr />
       {children}
