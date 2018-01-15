@@ -8,8 +8,19 @@ const Order = db.define('order', {
     defaultValue: 'Created'
   },
   order_total: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.INTEGER,
     defaultValue: 0
+  }
+}, {
+  getterMethods: {
+    centsToDollars() {
+      return this.item_total / 100;
+    }
+  },
+  setterMethods: {
+    dollarsToCents(dollars) {
+      this.setDataValue('item_total', dollars * 100);
+    }
   }
 })
 
