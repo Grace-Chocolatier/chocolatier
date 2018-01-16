@@ -2,6 +2,7 @@ var Rating = require('react-rating');
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { writeReview, postReview } from '../store/review'
+import { fetchProduct } from '../store/product';
 
 class NewReview extends Component {
 
@@ -71,7 +72,11 @@ const mapDispatchToProps = function (dispatch) {
     handleSubmit (evt, productId, rating, description) {
       evt.preventDefault();
       dispatch(postReview({description: description, rating: rating, productId: productId}))
-    }
+      this.setState({currentRating:0})
+    },
+    getProduct: function (productId){
+      dispatch(fetchProduct(productId));
+    },
   }
 }
 
