@@ -3,6 +3,7 @@ import { fetchProduct } from '../store/product';
 import { connect } from 'react-redux';
 import { postCart } from '../store/cart';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Review } from './Review';
 
 const style = {
   margin: 12,
@@ -38,6 +39,7 @@ class SingleProduct extends Component {
               <RaisedButton className="raised_button" label="+" onClick={this.props.incrementQuantity.bind(this)} style={style} />
               <RaisedButton className="raised_button" label="-" disabled={!this.state.quantity > 0} style={style} onClick={this.props.decrementQuantity.bind(this)} />
         </div>
+        <Review reviews={product.reviews} />
       </div>
     );
   }

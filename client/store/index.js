@@ -10,9 +10,9 @@ import users from './users'
 import orders from './orders'
 import singleOrder from './order'
 import categories from './categories'
+import review from './review'
 
-
-const reducer = combineReducers({user, products, product, cart, users, orders, singleOrder, categories})
+const reducer = combineReducers({user, products, product, cart, users, orders, singleOrder, categories, review})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
