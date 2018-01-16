@@ -4,10 +4,10 @@ const cartUtils = require('../../utils/cartUtils')
 /**
  * ACTION TYPES
  */
-const ADD_TO_CART = 'ADD_TO_CART'
-const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
-const GET_CART = 'GET_CART';
-const CLEAR_CART = 'CLEAR_CART';
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+export const GET_CART = 'GET_CART';
+export const CLEAR_CART = 'CLEAR_CART';
 
 /**
  * INITIAL STATE
