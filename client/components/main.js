@@ -13,7 +13,7 @@ import AdminDropdown from './AdminDropdown';
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn, email, id, isAdmin} = props
-  console.log("main.js props are", props)
+
   return (
     <div>
       {(isLoggedIn && isAdmin) &&
@@ -21,33 +21,42 @@ const Main = (props) => {
           <AdminDropdown />
         </div>
       }
-      <Link to="/"><h1 id="logo"><img src="chocolatier_logo.svg" /></h1></Link>
-      <nav>
-        <div>
-          {
-            isLoggedIn
-              ? <div>
-                <h3>
-                  <Link to={`/users/${id}`}>Welcome {email} </Link>
-                </h3>
-                {/* The navbar will show these links after you log in */}
-                <Link to="/">Home</Link>
-                <a href="#" onClick={handleClick}>Logout</a>
-                <Link to="/cart">Cart</Link>
-              </div>
-              : <div>
-                {/* The navbar will show these links before you log in */}
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
-                <Link to="/cart">Cart</Link>
-              </div>
-          }
+      <div className="container">
+        <div id="logo"><Link to="/"><img src="chocolatier_logo.svg" /></Link></div>
+            {
+              isLoggedIn
+                ? 
+                <nav>
+                  <div className="nav_left">
+                    <Link to={`/users/${id}`}>Welcome {email} </Link>
+                  </div>
+                  {/* The navbar will show these links after you log in */}
+                  <div className="nav_right">
+                    <div className="nav_links">
+                      <Link to="/">Home</Link>
+                      <a href="#" onClick={handleClick}>Logout</a>
+                      <Link to="/cart">Cart</Link>
+                    </div>
+                  </div>
+                </nav>
+                : <nav>
+                    <div className="nav_right">
+                      <div className="nav_links">
+                  {/* The navbar will show these links before you log in */}
+                        <Link to="/login">Login</Link>
+                        <Link to="/signup">Sign Up</Link>
+                        <Link to="/cart">Cart</Link>
+                      </div>
+                    </div>
+                  </nav>
+            }
+        <div className="line"></div>
+        {children}
+        <div id="footer">
+          <div className="line"></div>
         </div>
-    </nav>
-    <hr />
-      {children}
-
       </div>
+    </div>
   )
 }
 
