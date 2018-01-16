@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { fetchOrder } from '../store/order';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton';
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 
 const style = {
   margin: 12,
+  alignText: 'center'
 };
 
 class SingleOrder extends Component {
@@ -29,11 +37,24 @@ class SingleOrder extends Component {
         <h5>ORDER STATUS: {order.status}</h5>
         <h5>OWNER: {order.user && order.user.email || 'GUEST'}</h5>
         <h5>ORDER ITEMS: </h5>
-        {/*
-          let's figure out the best way to approach handling the order items
-          order.order_items.map(orderItem => (
-          <textarea key={orderItem.id}>orderItem</textarea>)
-        )*/}
+        <Table>
+            <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+              <TableRow>
+                <TableHeaderColumn style={style}>Order Item ID</TableHeaderColumn>
+                <TableHeaderColumn style={style}>Price</TableHeaderColumn>
+                <TableHeaderColumn style={style}>Quantity</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody displayRowCheckbox={false}>
+              {order.order_items && order.order_items.map((product) => (
+                <TableRow key={product.id}>
+                  <TableRowColumn style={style}><Link to={`/products/${product.id}`}>{product.id}</Link></TableRowColumn>
+                  <TableRowColumn style={style}>${product.item_total}</TableRowColumn>
+                  <TableRowColumn style={style}>{product.quantity}</TableRowColumn>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
       </div>
     );
   }
