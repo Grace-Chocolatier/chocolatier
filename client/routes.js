@@ -37,7 +37,8 @@ class Routes extends Component {
               <Route exact path='/products/:productId' component={SingleProduct} />
               <Route exact path='/users/:userId' component={SingleUser} />
               <Route exact path='/manage/users' component={ManageUsers} />
-              <Route path='/manage/products' component={ManageProducts} />
+              <Route exact path='/manage/products' component={ManageProducts} />
+              <Route exact path='/manage/products/:id' component={ManageProducts_item} />
               <Route exact path='/manage/orders' component={ManageOrders} />
               <Route exact path='/manage/orders/:orderId' component={SingleOrder} />
               <Route component={Products} />

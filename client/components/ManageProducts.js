@@ -28,7 +28,6 @@ class ManageProducts extends Component {
   }
 
   render() {
-      console.log("state is", this.state)
       return (
         <div>
           <RaisedButton className="raised_button" label="Edit Selected Item" disabled={false} style={style} containerElement={<Link to={`/manage/products/${this.state.currentSelected.id}`} state={this.state.currentSelected}></Link>} />
@@ -62,9 +61,6 @@ class ManageProducts extends Component {
               })}
             </TableBody>
           </Table>
-          <Switch>
-            <Route path="/:id" render={() => <ManageProducts_item product={this.state.currentSelected} />} />
-          </Switch>
         </div>
       )
   }
