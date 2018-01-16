@@ -12,38 +12,51 @@ import AdminDropdown from './AdminDropdown';
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const {children, handleClick, isLoggedIn, email, id} = props
+  const {children, handleClick, isLoggedIn, email, id, isAdmin} = props
 
   return (
     <div>
-      <Link to="/"><h1 id="logo"><img src="chocolatier_logo.svg" /></h1></Link>
-      <nav>
-        <div>
-          {
-            isLoggedIn
-              ? <div>
-                <h3>
-                  <Link to={`/users/${id}`}>Welcome {email} </Link>
-                </h3>
-                {/* The navbar will show these links after you log in */}
-                <Link to="/">Home</Link>
-                <a href="#" onClick={handleClick}>Logout</a>
-                <Link to="/cart">Cart</Link>
-              </div>
-              : <div>
-                {/* The navbar will show these links before you log in */}
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
-                <Link to="/cart">Cart</Link>
-              </div>
-          }
+      {(isLoggedIn && isAdmin) &&
+        <div id="admin_bar">
+          <AdminDropdown />
         </div>
-        <AdminDropdown />
-    </nav>
-    <hr />
-      {children}
-
+      }
+      <div className="container">
+        <div id="logo"><Link to="/"><img src="chocolatier_logo.svg" /></Link></div>
+            {
+              isLoggedIn
+                ? 
+                <nav>
+                  <div className="nav_left">
+                    <Link to={`/users/${id}`}>Welcome {email} </Link>
+                  </div>
+                  {/* The navbar will show these links after you log in */}
+                  <div className="nav_right">
+                    <div className="nav_links">
+                      <Link to="/">Home</Link>
+                      <a href="#" onClick={handleClick}>Logout</a>
+                      <Link to="/cart">Cart</Link>
+                    </div>
+                  </div>
+                </nav>
+                : <nav>
+                    <div className="nav_right">
+                      <div className="nav_links">
+                  {/* The navbar will show these links before you log in */}
+                        <Link to="/login">Login</Link>
+                        <Link to="/signup">Sign Up</Link>
+                        <Link to="/cart">Cart</Link>
+                      </div>
+                    </div>
+                  </nav>
+            }
+        <div className="line"></div>
+        {children}
+        <div id="footer">
+          <div className="line"></div>
+        </div>
       </div>
+    </div>
   )
 }
 
@@ -54,7 +67,8 @@ const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
     email: state.user.email,
-    id: state.user.id
+    id: state.user.id,
+    isAdmin: state.user.isAdmin
   }
 }
 

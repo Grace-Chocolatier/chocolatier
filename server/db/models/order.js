@@ -11,7 +11,8 @@ const Order = db.define('order', {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     get() {
-      return this.getDataValue('order_total') / 100;
+      let val = this.getDataValue('order_total') / 100;
+      return val;
     },
     set(dollars){
       this.setDataValue('order_total', dollars * 100);
