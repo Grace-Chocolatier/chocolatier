@@ -12,10 +12,15 @@ import AdminDropdown from './AdminDropdown';
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const {children, handleClick, isLoggedIn, email, id} = props
-
+  const {children, handleClick, isLoggedIn, email, id, isAdmin} = props
+  console.log("main.js props are", props)
   return (
     <div>
+      {(isLoggedIn && isAdmin) &&
+        <div id="admin_bar">
+          <AdminDropdown />
+        </div>
+      }
       <Link to="/"><h1 id="logo"><img src="chocolatier_logo.svg" /></h1></Link>
       <nav>
         <div>
@@ -38,7 +43,6 @@ const Main = (props) => {
               </div>
           }
         </div>
-        <AdminDropdown />
     </nav>
     <hr />
       {children}
@@ -54,7 +58,8 @@ const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
     email: state.user.email,
-    id: state.user.id
+    id: state.user.id,
+    isAdmin: state.user.isAdmin
   }
 }
 

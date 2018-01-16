@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Amiri', serif;
   background-color: #300B03;
   margin:0;
 }
@@ -13,19 +13,27 @@ label {
   display: block;
 }
 
+#admin_bar {
+  width: 100%;
+  background-color: #c29200;
+  height:60px;
+}
+
+#admin_drop{
+  display:block;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 nav {
   position: static;
-  top:0;  background-colr: #000;
   right:0;
   width:100%;
 }
 nav a {
   display: inline-block;
   margin: 1em;
-}
-
-#admin_drop{
-  display:inline-block;
 }
 
 #nav_links {
