@@ -9,6 +9,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/:id/reviews', (req, res, next) => {
+	console.log("REQ.BODY", req.body)
 	Review.create(req.body)
 	.then(newReview => {
 		console.log('***review***', newReview)

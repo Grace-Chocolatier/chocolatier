@@ -8,16 +8,27 @@ class NewReview extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentRating: 0
+      currentRating: 0,
+      description: ''
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
   }
 
   handleChange (value) {
-    this.setState({
-      currentRating: value
-    })
+    console.log("VALUE", value)
+    if(value) {
+      this.setState({
+        currentRating: Number(value)
+      })
+    }
+  }
 
+  handleDescriptionChange (evt) {
+    evt.preventDefault();
+    this.setState({
+      description: evt.target.value
+    })
   }
 
   render () {
@@ -25,9 +36,9 @@ class NewReview extends Component {
     return (
       <div>
         <Rating
-
+          placeholderRating={this.state.currentRating}
           onChange={this.handleChange} />
-        <form onSubmit={(e) => handleSubmit.call(this, e, productId, this.state.currentRating, 'hello')}>
+        <form onSubmit={(e) => handleSubmit.call(this, e, productId, this.state.currentRating, this.state.description)}>
           <div className="form-group">
             <label htmlFor="name" style={{color:"white"}}>Create a Review</label>
             <input
@@ -36,6 +47,7 @@ class NewReview extends Component {
               type="text"
               name="description"
               placeholder="Enter review"
+              onChange={this.handleDescriptionChange}
             />
           </div>
           <div className="form-group">
