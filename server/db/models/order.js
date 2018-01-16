@@ -5,15 +5,26 @@ const OrderItem = require('./order_item');
 const Order = db.define('order', {
   status: {
     type: Sequelize.STRING,
+    defaultValue: 'Created'
   },
   order_total: {
-    type: Sequelize.FLOAT
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    get() {
+      let val = this.getDataValue('order_total') / 100;
+      return val;
+    },
+    set(dollars){
+      this.setDataValue('order_total', dollars * 100);
+    }
   }
 })
 
 Order.createOrder = function(userId, cart) {
   let newOrder;
-  userId ? newOrder = Order.create({ userId }) : newOrder = Order.create();
+  let order_total = 0;
+  cart.forEach(item => { order_total += item.quantity * item.price });
+  userId ? newOrder = Order.create({ userId, order_total }) : newOrder = Order.create({ order_total });
     newOrder.then(order => {
       let orderItems = cart.map(item => {
         let orderItem = {

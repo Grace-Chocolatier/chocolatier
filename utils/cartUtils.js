@@ -1,10 +1,10 @@
 const cartUtils = {}
 
-cartUtils.removeItemFromCart = (cart, item) => {
+cartUtils.removeItemFromCart = (cart, productId) => {
     let newCart = [];
     for (var i = 0; i < cart.length; i++) {
-      if (cart[i].id !== item.id) {
-        newCart.push(item);
+      if (cart[i].id !== productId) {
+        newCart.push(cart[i]);
       }
     }
     return newCart;
