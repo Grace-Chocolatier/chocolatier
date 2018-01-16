@@ -25,7 +25,7 @@ Order.createOrder = function(userId, cart) {
   let order_total = 0;
   cart.forEach(item => { order_total += item.quantity * item.price });
   userId ? newOrder = Order.create({ userId, order_total }) : newOrder = Order.create({ order_total });
-    newOrder.then(order => {
+    return newOrder.then(order => {
       let orderItems = cart.map(item => {
         let orderItem = {
           orderId: order.id,
@@ -39,8 +39,6 @@ Order.createOrder = function(userId, cart) {
       return OrderItem.bulkCreate(orderItems)
     })
     .catch(err => console.error(err));
-
-  return newOrder;
 }
 
 module.exports = Order
