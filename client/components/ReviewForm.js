@@ -16,8 +16,7 @@ class NewReview extends Component {
   }
 
   handleChange (value) {
-    console.log("VALUE", value)
-    if(value) {
+    if (value) {
       this.setState({
         currentRating: Number(value)
       })
@@ -71,8 +70,6 @@ const mapDispatchToProps = function (dispatch) {
   return {
     handleSubmit (evt, productId, rating, description) {
       evt.preventDefault();
-      // console.log(evt.target.description.value)
-      // const description = evt.target.description.value;
       dispatch(postReview({description: description, rating: rating, productId: productId}))
     }
   }
