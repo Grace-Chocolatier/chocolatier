@@ -18,7 +18,7 @@ class SingleProduct extends Component {
   componentDidMount() {
     const productId = this.props.match.params.productId;
     this.props.getProduct(productId);
-    this.setState({quantity: 0});
+    this.setState({quantity: 1});
   }
 
   render () {

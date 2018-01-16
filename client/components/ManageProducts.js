@@ -10,7 +10,7 @@ import {
 import { fetchProducts } from '../store/products';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Route, Link, Switch } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import ManageProducts_item from './ManageProducts_item';
 
 const style = {}
@@ -28,10 +28,9 @@ class ManageProducts extends Component {
   }
 
   render() {
-      console.log("state is", this.state)
       return (
         <div>
-          <RaisedButton className="raised_button" label="Edit Selected Item" disabled={false} style={style} containerElement={<Link to={`/manage/products/${this.state.currentSelected.id}`} state={this.state.currentSelected}></Link>} />
+          <RaisedButton className="raised_button" label="Edit Selected Item" disabled={false} style={style} containerElement={<Link to={`/manage/products/${this.state.currentSelected.id}`}></Link>} />
           <Table
             onRowSelection={(row) => {
             this.props.handleRowSelection.call(this, row)} } >
@@ -62,9 +61,6 @@ class ManageProducts extends Component {
               })}
             </TableBody>
           </Table>
-          <Switch>
-            <Route path="/:id" render={() => <ManageProducts_item product={this.state.currentSelected} />} />
-          </Switch>
         </div>
       )
   }
