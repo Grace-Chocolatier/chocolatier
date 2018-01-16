@@ -43,7 +43,7 @@ class ManageOrders extends Component {
                   <TableRow key={order.id} >
                     <TableRowColumn>{order.id}</TableRowColumn>
                     <TableRowColumn>{order.status}</TableRowColumn>
-                    <TableRowColumn>{order.orderTotal || '$'}
+                    <TableRowColumn>{'$' + order.order_total || '$'}
                     </TableRowColumn>
                     <TableRowColumn>{<Link to={`/manage/orders/${order.id}`}>Details</Link>}</TableRowColumn>
                   </TableRow>

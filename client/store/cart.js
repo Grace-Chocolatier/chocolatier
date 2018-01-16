@@ -17,10 +17,10 @@ const cart = []
 /**
  * ACTION CREATORS
  */
-const addToCart = product => ({type: ADD_TO_CART, product});
-const removeFromCart = productId => ({type: REMOVE_FROM_CART, productId});
-const getCart = products => ({type: GET_CART, products});
-const empty = () => ({type: CLEAR_CART});
+export const addToCart = product => ({type: ADD_TO_CART, product});
+export const removeFromCart = productId => ({type: REMOVE_FROM_CART, productId});
+export const getCart = products => ({type: GET_CART, products});
+export const empty = () => ({type: CLEAR_CART});
 
 /**
  * THUNK CREATORS

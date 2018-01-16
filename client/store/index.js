@@ -12,7 +12,7 @@ import singleOrder from './order'
 import categories from './categories'
 
 
-const reducer = combineReducers({user, products, product, cart, users, orders, singleOrder, categories})
+export const reducer = combineReducers({user, products, product, cart, users, orders, singleOrder, categories})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
