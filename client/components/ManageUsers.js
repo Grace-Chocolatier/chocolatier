@@ -35,7 +35,7 @@ class ManageUsers extends Component {
             <TableHeader adjustForCheckbox={true} displaySelectAll={false}>
               <TableRow >
                 <TableHeaderColumn>ID</TableHeaderColumn>
-                <TableHeaderColumn>Name</TableHeaderColumn>
+                <TableHeaderColumn>Email</TableHeaderColumn>
                 <TableHeaderColumn>Admin</TableHeaderColumn>
               </TableRow>
             </TableHeader>

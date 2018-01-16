@@ -27,7 +27,7 @@ class SingleOrder extends Component {
         <h3>Details</h3>
         <h5>ORDER TOTAL: ${order.order_total}</h5>
         <h5>ORDER STATUS: {order.status}</h5>
-        <h5>OWNER: {order.user || 'GUEST'}</h5>
+        <h5>OWNER: {order.user && order.user.email || 'GUEST'}</h5>
         <h5>ORDER ITEMS: </h5>
         {/*
           let's figure out the best way to approach handling the order items
