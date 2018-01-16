@@ -13,3 +13,10 @@ router.get('/:id', (req, res, next) => {
 	.then(product => res.json(product))
 	.catch(next)
 })
+
+router.put('/:id', (req, res, next) => {
+  Product.update(req.body, { where: {id: req.params.id} })
+  .then(() => Product.findById(Number(req.params.id)))
+  .then(product => res.json(product))
+  .catch(err => console.error(err));
+})

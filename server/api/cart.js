@@ -13,7 +13,12 @@ router.post('/', (req, res, next) => {
 
 router.delete('/', (req, res, next) => {
   req.session.cart = [];
-  res.sendStatus(204)
+  res.sendStatus(204);
+});
+
+router.delete('/:productId', (req, res, next) => {
+	req.session.cart = cartUtils.removeItemFromCart(req.session.cart, Number(req.params.productId));
+	res.sendStatus(204);
 });
 
 router.use((req, res, next) => {
