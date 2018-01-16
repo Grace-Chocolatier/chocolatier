@@ -38,18 +38,17 @@ export class Products extends Component {
   render(){
     return (
       <div>
-        <h1 align="center">Chocolates</h1>
-        <div style={{display: "flex", flewFlow:"row wrap", justifyContent:"space-between",margin: "25px"}}>
+        <div style={{display: "flex", flewFlow:"row wrap", justifyContent:"space-between",margin: "25px 0"}}>
           <SearchBar onChange={event => this.props.handleSearchChange.call(this, event)} 
               onRequestSearch={event => console.log('search pressed')}
-              style={{minWidth: 400, maxWidth: 800}}
+              style={{minWidth: 300, maxWidth: 800}}
               hintText="Search All Chocolates"/>
         <DropDownMenu 
           value={this.state.dropDownValue}
-          style={{width:200}}
+          style={{width:240, backgroundColor:"#fff", color: "#300B03"}}
           autoWidth={false}
           onChange={this.handleCategoryChange}>
-            <MenuItem value={0} primaryText="All Packaging Types" />
+            <MenuItem value={0} primaryText="Browse Categories" />
             {
               this.props.categories.map((category) => 
                 <MenuItem 

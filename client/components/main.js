@@ -16,10 +16,11 @@ const Main = (props) => {
 
   return (
     <div>
-      {(isLoggedIn && isAdmin) &&
+      {(isLoggedIn && isAdmin) ?
         <div id="admin_bar">
           <AdminDropdown />
-        </div>
+        </div> :
+        <div id="top_accent"></div>
       }
       <div className="container">
         <div id="logo"><Link to="/"><img src="chocolatier_logo.svg" /></Link></div>
@@ -27,7 +28,7 @@ const Main = (props) => {
               isLoggedIn
                 ? 
                 <nav>
-                  <div className="nav_left">
+                  <div className="nav_left nav_links">
                     <Link to={`/users/${id}`}>Welcome {email} </Link>
                   </div>
                   {/* The navbar will show these links after you log in */}
