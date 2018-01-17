@@ -3,7 +3,6 @@ const { Order } = require('../db/models')
 const gatekeeperMiddleware = require('../../utils/gatekeeperMiddleware');
 module.exports = router;
 
-// add gatekeepermiddleware here
 router.get('/',
   gatekeeperMiddleware.isAdmin,
   (req, res, next) => {
