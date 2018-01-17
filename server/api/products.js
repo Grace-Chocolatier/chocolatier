@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product} = require('../db/models')
+const {Product, Review} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -19,4 +19,12 @@ router.put('/:id', (req, res, next) => {
   .then(() => Product.findById(Number(req.params.id)))
   .then(product => res.json(product))
   .catch(err => console.error(err));
+})
+
+router.post('/:id/reviews', (req, res, next) => {
+	Review.create(req.body)
+	.then(newReview => {
+		res.json(newReview)
+	})
+	.catch(next)
 })

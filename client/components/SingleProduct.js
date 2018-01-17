@@ -3,6 +3,7 @@ import { fetchProduct } from '../store/product';
 import { connect } from 'react-redux';
 import { postCart } from '../store/cart';
 import RaisedButton from 'material-ui/RaisedButton';
+import {Review} from './Review';
 
 const style = {
   margin: 12,
@@ -24,29 +25,32 @@ class SingleProduct extends Component {
   render() {
     const { product } = this.props;
     return (
-      <div className="product_item">
-        <div className="product_img">
-          <img src={product.imageUrl} />
-        </div>
-        <div className="product_info">
-          <span className="product_name">{product.name}</span>
-          <span className="product_description">{product.description}</span>
-          <span className="product_price">${product.price}</span>
-          <div className="line"></div>
-          <form onSubmit={(e) => this.props.handleSubmit.call(this, e, this.props.product, this.state.quantity)}>
-            <label className="subtext">
-              Quantity:
-                  <input onChange={this.props.handleChange.bind(this)} type="text" value={this.state.quantity} name="name" />
-            </label>
-          </form>
-          <div className="listViewButtons">
-            <RaisedButton className="raised_button" label="+" onClick={this.props.incrementQuantity.bind(this)} style={style} />
-            <RaisedButton className="raised_button" label="-" disabled={!this.state.quantity > 0} style={style} onClick={this.props.decrementQuantity.bind(this)} />
+      <div>
+        <div className="product_item">
+          <div className="product_img">
+            <img src={product.imageUrl} />
           </div>
-          <div className="product_add">
-            <RaisedButton label="Add To Cart" disabled={!this.state.quantity > 0} onClick={e => this.props.handleSubmit.call(this, e, this.props.product, this.state.quantity)} style={style} />
+          <div className="product_info">
+            <span className="product_name">{product.name}</span>
+            <span className="product_description">{product.description}</span>
+            <span className="product_price">${product.price}</span>
+            <div className="line"></div>
+            <form onSubmit={(e) => this.props.handleSubmit.call(this, e, this.props.product, this.state.quantity)}>
+              <label className="subtext">
+                Quantity:
+                    <input onChange={this.props.handleChange.bind(this)} type="text" value={this.state.quantity} name="name" />
+              </label>
+            </form>
+            <div className="listViewButtons">
+              <RaisedButton className="raised_button" label="+" onClick={this.props.incrementQuantity.bind(this)} style={style} />
+              <RaisedButton className="raised_button" label="-" disabled={!this.state.quantity > 0} style={style} onClick={this.props.decrementQuantity.bind(this)} />
+            </div>
+            <div className="product_add">
+              <RaisedButton label="Add To Cart" disabled={!this.state.quantity > 0} onClick={e => this.props.handleSubmit.call(this, e, this.props.product, this.state.quantity)} style={style} />
+            </div>
           </div>
         </div>
+        <Review reviews={product.reviews} />
       </div>
     );
   }
